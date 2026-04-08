@@ -1,0 +1,42 @@
+{
+  "name": "my-express-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "format": "prettier \"**/*.{js,json,md}\" --check",
+    "format:write": "prettier \"**/*.{js,json,md}\" --write",
+    "seed": "node src/seed/seed.js",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "axios": "^1.14.0",
+    "bcrypt": "^5.1.1",
+    "cors": "*",
+    "dotenv": "*",
+    "express": "^4.22.1",
+    "express-validator": "^7.3.2",
+    "helmet": "^7.2.0",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.10.1",
+    "mysql2": "^3.9.7",
+    "sequelize": "^6.37.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5",
+    "sequelize-cli": "^6.6.2"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": true,
+    "trailingComma": "es5",
+    "arrowParens": "always"
+  }
+}

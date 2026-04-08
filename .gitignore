@@ -1,0 +1,6 @@
+node_modules/
+.env
+*.log
+temp_body.json
+test_crud.js
+.DS_Store
