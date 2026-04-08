@@ -1,56 +1,96 @@
-# Test API - CRM Project
+# توثيق الـ API - مشروع CRM (Test API)
 
-Express.js REST API with MySQL (Sequelize) for User and Customer management.
+نظام إدارة المستخدمين والعملاء مبني باستخدام Express.js و MySQL (Sequelize).
 
-## 🚀 Features
-- **Authentication**: JWT-based auth (currently disabled in middleware for easier API testing).
-- **Users**: CRUD operations for system users.
-- **Customers**: Full management for CRM customers.
-- **Database**: MySQL integration via Sequelize ORM.
-- **Seeding**: Easy dummy data generation.
-- **Security**: Helmet and CORS protection.
-
-## 🛠️ Setup
-1. Clone the repository.
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Configure `.env` file with your MySQL credentials:
-   ```env
-   PORT=3000
-   MYSQL_HOST=localhost
-   MYSQL_USER=root
-   MYSQL_PASSWORD=yourpassword
-   MYSQL_DATABASE=crm
-   JWT_SECRET=yoursecret
-   ```
-4. Seed the database with dummy data:
-   ```bash
-   npm run seed
-   ```
-
-## 🏃 Running the App
-- **Development mode** (with nodemon):
-  ```bash
-  npm run dev
-  ```
-- **Production mode**:
-  ```bash
-  npm start
-  ```
-
-## 📡 API Endpoints
-### Users
-- `POST /api/v1/users/register`: Register new user.
-- `POST /api/v1/users/login`: Login and get token.
-- `GET /api/v1/users/me`: Get current user info.
-
-### Customers
-- `GET /api/v1/customers`: List all customers.
-- `POST /api/v1/customers`: Add new customer.
-- `PATCH /api/v1/customers/:id`: Update customer.
-- `DELETE /api/v1/customers/:id`: Delete customer.
+## 🚀 معلومات عامة
+- **الرابط الأساسي**: `http://localhost:3000/api/v1`
+- **نظام التحقق**: JWT (معطل حالياً في الـ Middleware لتسهيل الاختبار المباشر).
+- **نوع البيانات**: JSON في الطلبات والاستجابات.
 
 ---
-Created by [ebrahim5529](https://github.com/ebrahim5529)
+
+## 👥 مسارات المستخدمين (Users)
+
+### 1. تسجيل مستخدم جديد
+- **المسار**: `POST /users/register`
+- **الجسم (Body)**:
+```json
+{
+  "name": "إبراهيم محمد",
+  "email": "ebrahim@example.com",
+  "password": "password123"
+}
+```
+- **الاستجابة الناجحة (201)**:
+```json
+{
+  "user": { "id": 1, "name": "إبراهيم محمد", "email": "ebrahim@example.com" },
+  "token": "JWT_TOKEN_HERE"
+}
+```
+
+### 2. تسجيل الدخول
+- **المسار**: `POST /users/login`
+- **الجسم (Body)**:
+```json
+{
+  "email": "ebrahim@example.com",
+  "password": "password123"
+}
+```
+- **الاستجابة الناجحة (200)**:
+```json
+{
+  "user": { "id": 1, "name": "إبراهيم محمد", "email": "ebrahim@example.com" },
+  "token": "JWT_TOKEN_HERE"
+}
+```
+
+### 3. جلب بيانات المستخدم الحالي
+- **المسار**: `GET /users/me`
+- **ملاحظة**: يتطلب التوكين (إذا كان التحقق مفعلاً). حالياً يرجع المستخدم الافتراضي.
+
+---
+
+## 💼 مسارات العملاء (Customers)
+
+### 1. جلب قائمة جميع العملاء
+- **المسار**: `GET /customers`
+- **الاستجابة الناجحة (200)**: قائمة بجميع العملاء.
+
+### 2. إضافة عميل جديد
+- **المسار**: `POST /customers`
+- **الجسم (Body)**:
+```json
+{
+  "name": "شركة التقنية العربية",
+  "email": "info@arabtech.com",
+  "phone": "0501234567",
+  "address": "الرياض، السعودية"
+}
+```
+
+### 3. تحديث بيانات عميل
+- **المسار**: `PATCH /customers/:id`
+- **الجسم (Body)**: (حقول اختيارية)
+```json
+{
+  "name": "الاسم الجديد",
+  "phone": "0599999999"
+}
+```
+
+### 4. حذف عميل
+- **المسار**: `DELETE /customers/:id`
+- **الاستجابة الناجحة (200)**: `{ "success": true }`
+
+---
+
+## 🛠️ تعليمات التشغيل
+1. تثبيت الحزم: `npm install`
+2. إعداد قاعدة البيانات في ملف `.env`.
+3. إضافة بيانات تجريبية: `npm run seed`
+4. تشغيل السيرفر: `npm run dev`
+
+---
+تم التوثيق بواسطة [إبراهيم](https://github.com/ebrahim5529)
